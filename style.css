@@ -3,3 +3,47 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+body {
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+.game-options {
+  position: fixed;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.game-options h1 {
+  font-size: 6rem;
+  color: rgb(47, 64, 112);
+}
+
+.game-options h2 {
+  font-size: 4rem;
+  color: #98c1d9;
+}
+
+.game-options__modes li {
+  list-style: none;
+}
+
+.game-options__modes li button {
+  width: 40%;
+  height: 50px;
+  margin: 20px 0 0;
+  border: #9499a0 solid 4px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: bold;
+  background-color: white;
+  color: #9499a0;
+  transition: 0.2s;
+}
+
+.game-options__modes li button:hover {
+  border-color: orange;
+}
