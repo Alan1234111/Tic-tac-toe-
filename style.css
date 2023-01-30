@@ -8,11 +8,15 @@ body {
   font-family: "Source Sans Pro", sans-serif;
 }
 
+.game-board,
 .game-options {
   position: fixed;
-  top: 15%;
   left: 50%;
+  top: 15%;
   transform: translateX(-50%);
+}
+
+.game-options {
   text-align: center;
 }
 
@@ -30,10 +34,7 @@ body {
   list-style: none;
 }
 
-.game-options__modes li button {
-  width: 40%;
-  height: 50px;
-  margin: 20px 0 0;
+.btn {
   border: #9499a0 solid 4px;
   border-radius: 10px;
   font-size: 1rem;
@@ -44,6 +45,32 @@ body {
   transition: 0.2s;
 }
 
-.game-options__modes li button:hover {
+.btn:hover {
   border-color: orange;
+}
+
+.game-options__modes li button {
+  margin: 20px 0 0;
+  width: 40%;
+  height: 50px;
+}
+
+.game-board {
+  text-align: center;
+}
+
+.board tr td {
+  width: 150px;
+  height: 150px;
+  border: 1px solid black;
+}
+
+.btn-back {
+  width: 30%;
+  margin-top: 2rem;
+  padding: 0.4rem 0;
+}
+
+.hide {
+  display: none;
 }
