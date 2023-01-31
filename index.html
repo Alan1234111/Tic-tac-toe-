@@ -11,7 +11,7 @@
     <title>Tic tac toe</title>
   </head>
   <body>
-    <div class="game-options hide">
+    <div class="game-options">
       <h1>Tic-Tac-Toe</h1>
       <h2>Play:</h2>
 
@@ -24,8 +24,8 @@
       </ul>
     </div>
 
-    <div class="game-board">
-      <table class="board">
+    <div class="board-section hide">
+      <table class="game-board">
         <tr>
           <td class="field" id="1"></td>
           <td class="field" id="2"></td>
@@ -42,7 +42,9 @@
           <td class="field" id="9"></td>
         </tr>
       </table>
+      <div class="win-info hide"><span class="win-mark"></span> Wins the round!</div>
       <button class="btn btn-back">Go Back</button>
+      <button class="btn btn-replay hide">Replay</button>
     </div>
     <script src="main.js"></script>
   </body>
