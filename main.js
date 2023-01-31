@@ -5,6 +5,7 @@
   let xTurn = true;
 
   function columnsWin(playerMark) {
+    return (tableFields[0] == playerMark && tableFields[3] == playerMark && tableFields[6] == playerMark) || (tableFields[1] == playerMark && tableFields[4] == playerMark && tableFields[7] == playerMark) || (tableFields[2] == playerMark && tableFields[5] == playerMark && tableFields[8] == playerMark);
     if ((tableFields[0] == playerMark && tableFields[3] == playerMark && tableFields[6] == playerMark) || (tableFields[1] == playerMark && tableFields[4] == playerMark && tableFields[7] == playerMark) || (tableFields[2] == playerMark && tableFields[5] == playerMark && tableFields[8] == playerMark)) {
       return true;
     } else {
@@ -13,19 +14,20 @@
   }
 
   function rowsWin(playerMark) {
-    if ((tableFields[0] == playerMark && tableFields[1] == playerMark && tableFields[2] == playerMark) || (tableFields[3] == playerMark && tableFields[4] == playerMark && tableFields[5] == playerMark) || (tableFields[6] == playerMark && tableFields[7] == playerMark && tableFields[8] == playerMark)) {
-      return true;
-    } else {
-      return false;
-    }
+    return (tableFields[0] == playerMark && tableFields[1] == playerMark && tableFields[2] == playerMark) || (tableFields[3] == playerMark && tableFields[4] == playerMark && tableFields[5] == playerMark) || (tableFields[6] == playerMark && tableFields[7] == playerMark && tableFields[8] == playerMark);
+    // return true;
+    // } else {
+    // return false;
+    // }
   }
 
   function diagonallyWin(playerMark) {
-    if ((tableFields[0] == playerMark && tableFields[4] == playerMark && tableFields[8] == playerMark) || (tableFields[2] == playerMark && tableFields[4] == playerMark && tableFields[6] == playerMark)) {
-      return true;
-    } else {
-      return false;
-    }
+    return (tableFields[0] == playerMark && tableFields[4] == playerMark && tableFields[8] == playerMark) || (tableFields[2] == playerMark && tableFields[4] == playerMark && tableFields[6] == playerMark);
+    // if ((tableFields[0] == playerMark && tableFields[4] == playerMark && tableFields[8] == playerMark) || (tableFields[2] == playerMark && tableFields[4] == playerMark && tableFields[6] == playerMark)) {
+    // return true;
+    // } else {
+    // return false;
+    // }
   }
 
   function isWin(mark) {
