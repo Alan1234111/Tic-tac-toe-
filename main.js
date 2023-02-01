@@ -1,7 +1,7 @@
 const gameBoard = (() => {
+  const fields = [...document.querySelectorAll(".field")];
   const btnReplay = document.querySelector(".btn-replay");
   const winInfo = document.querySelector(".win-info");
-  const winMarkInfo = document.querySelector(".win-mark");
   const firstScreen = document.querySelector(".game-options");
   const secondScreen = document.querySelector(".board-section");
 
@@ -24,7 +24,7 @@ const gameBoard = (() => {
     [0, 4, 8],
   ];
 
-  const player1 = playerFactory("player1", "X", false, true);
+  let player1 = playerFactory("player1", "X", false, true);
   let player2 = undefined;
 
   function createSecondPlayer() {
@@ -43,7 +43,25 @@ const gameBoard = (() => {
     btnReplay.classList.remove("hide");
     winInfo.classList.remove("hide");
 
-    winMarkInfo.textContent = mark;
+    if (mark == "tie") return (winInfo.textContent = "It's a tie");
+
+    winInfo.textContent = `${mark} Wins the round`;
+  }
+
+  function endGame() {
+    fields.forEach((field) => {
+      field.style.pointerEvents = "none";
+    });
+  }
+
+  function isTie() {
+    const allFilledUp = fields.filter((field) => field.textContent);
+    const isWinField = allFilledUp.some((filledUp) => filledUp.classList.contains("win"));
+
+    if (allFilledUp.length === 9 && !isWinField) {
+      displayWinner("tie");
+      return endGame();
+    }
   }
 
   function isWin() {
@@ -51,10 +69,12 @@ const gameBoard = (() => {
       if (!board[winCombo[0]] || !board[winCombo[1]] || !board[winCombo[2]]) return;
 
       if (board[winCombo[0]] == board[winCombo[1]] && board[winCombo[0]] == board[winCombo[2]]) {
-        fields[winCombo[0]].classList.add("win");
-        fields[winCombo[1]].classList.add("win");
-        fields[winCombo[2]].classList.add("win");
-        displayWinner(board[winCombo[1]]);
+        for (let i = 0; i < winCombo.length; i++) {
+          fields[winCombo[i]].classList.add("win");
+        }
+
+        displayWinner(board[winCombo[0]]);
+        return endGame();
       }
     });
   }
@@ -66,6 +86,7 @@ const gameBoard = (() => {
     if (singleField) singleField.style.opacity = "1";
 
     isWin();
+    isTie();
   }
 
   function fillField() {
@@ -93,7 +114,12 @@ const gameBoard = (() => {
     btnReplay.classList.add("hide");
     winInfo.classList.add("hide");
 
-    fields.forEach((field) => field.classList.remove("win"));
+    fields.forEach((field) => {
+      console.log(field);
+      field.classList.remove("win");
+      field.style.opacity = "0";
+      field.style.pointerEvents = "fill";
+    });
 
     player1.turn = true;
     player2.turn = false;
@@ -111,7 +137,6 @@ const gameBoard = (() => {
   const modes = document.querySelectorAll(".game-options__modes li .btn");
   modes.forEach((mode) => mode.addEventListener("click", chooseMode));
 
-  const fields = [...document.querySelectorAll(".field")];
   fields.forEach((field) => field.addEventListener("click", fillField));
 
   const btnBack = document.querySelector(".btn-back");
