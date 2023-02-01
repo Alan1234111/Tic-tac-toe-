@@ -87,6 +87,7 @@ table tr td:last-child {
   height: 120px;
   border: 10px solid #e2e2e2;
   font-size: 5rem;
+  font-weight: bold;
   transition: 0.2s;
   opacity: 0;
   cursor: pointer;
@@ -95,9 +96,37 @@ table tr td:last-child {
 
 .btn-back,
 .btn-replay {
-  width: 30%;
+  width: 40%;
   margin-top: 2rem;
-  padding: 0.4rem 0;
+  padding: 0.4rem 0.4rem;
+}
+
+.btn-back,
+.btn-replay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-buttons {
+  display: flex;
+  justify-content: space-around;
+  padding: 0 2rem;
+}
+
+.img-back,
+.img-replay {
+  filter: invert(76%) sepia(0%) saturate(6302%) hue-rotate(60deg) brightness(82%) contrast(72%);
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-top: 2px;
+  margin-left: 5px;
+  transition: all ease-out 0.2s;
+}
+
+.btn-back:hover .img-back,
+.btn-replay:hover .img-replay {
+  filter: invert(19%) sepia(13%) saturate(2104%) hue-rotate(187deg) brightness(92%) contrast(97%);
 }
 
 .win-info {
