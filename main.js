@@ -1,12 +1,15 @@
 const gameBoard = (() => {
+  const btnReplay = document.querySelector(".btn-replay");
+  const winInfo = document.querySelector(".win-info");
+  const winMarkInfo = document.querySelector(".win-mark");
+  const firstScreen = document.querySelector(".game-options");
+  const secondScreen = document.querySelector(".board-section");
+
   const playerFactory = (name, mark, ai, turn) => {
     return {name, mark, ai, turn};
   };
 
-  let mode = "player";
-
-  const player1 = playerFactory("player1", "X", false, true);
-  let player2 = undefined;
+  let mode = "easy";
 
   let board = [];
 
@@ -21,25 +24,20 @@ const gameBoard = (() => {
     [0, 4, 8],
   ];
 
+  const player1 = playerFactory("player1", "X", false, true);
+  let player2 = undefined;
+
   function createSecondPlayer() {
     if (mode == "player") return playerFactory("player2", "O", false, false);
   }
 
-  const btnReplay = document.querySelector(".btn-replay");
-  const winInfo = document.querySelector(".win-info");
-  const winMarkInfo = document.querySelector(".win-mark");
+  function chooseMode() {
+    firstScreen.classList.add("hide");
+    secondScreen.classList.remove("hide");
 
-  function reset() {
-    board = [];
-    renderGameBoard();
-
-    btnReplay.classList.add("hide");
-    winInfo.classList.add("hide");
-
-    fields.forEach((field) => field.classList.remove("win"));
+    mode = this.id;
+    player2 = createSecondPlayer();
   }
-
-  btnReplay.addEventListener("click", reset);
 
   function displayWinner(mark) {
     btnReplay.classList.remove("hide");
@@ -74,28 +72,31 @@ const gameBoard = (() => {
     if (board[this.id - 1]) return;
 
     if (player1.turn) {
-      player1.turn = !player1.turn;
-      player2.turn = !player2.turn;
       board[this.id - 1] = player1.mark;
+      fields[this.id - 1].style.color = "#ee6c4d";
     } else {
-      player1.turn = !player1.turn;
-      player2.turn = !player2.turn;
       // ai
       board[this.id - 1] = player2.mark;
+      fields[this.id - 1].style.color = "#98c1d9";
     }
+
+    player1.turn = !player1.turn;
+    player2.turn = !player2.turn;
 
     renderGameBoard(this);
   }
 
-  const firstScreen = document.querySelector(".game-options");
-  const secondScreen = document.querySelector(".board-section");
+  function reset() {
+    board = [];
+    renderGameBoard();
 
-  function chooseMode() {
-    firstScreen.classList.add("hide");
-    secondScreen.classList.remove("hide");
+    btnReplay.classList.add("hide");
+    winInfo.classList.add("hide");
 
-    mode = this.id;
-    player2 = createSecondPlayer();
+    fields.forEach((field) => field.classList.remove("win"));
+
+    player1.turn = true;
+    player2.turn = false;
   }
 
   function returnToStart() {
@@ -115,6 +116,8 @@ const gameBoard = (() => {
 
   const btnBack = document.querySelector(".btn-back");
   btnBack.addEventListener("click", returnToStart);
+
+  btnReplay.addEventListener("click", reset);
 })();
 
 //stworzyc 2 zawodnikow w zaleznosi od wybranego trybu
