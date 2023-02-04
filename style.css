@@ -96,16 +96,12 @@ table tr td:last-child {
 
 .btn-back,
 .btn-replay {
-  width: 40%;
-  margin-top: 2rem;
-  padding: 0.4rem 0.4rem;
-}
-
-.btn-back,
-.btn-replay {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 40%;
+  margin-top: 2rem;
+  padding: 0.4rem 0.4rem;
 }
 
 .game-buttons {
@@ -142,4 +138,60 @@ table tr td:last-child {
 
 .hide {
   display: none;
+}
+
+@media (orientation: portrait) {
+  body {
+    min-width: 100vh;
+  }
+
+  .board-section,
+  .game-options {
+    top: 5%;
+  }
+
+  .game-options h1 {
+    font-size: 1.6rem;
+  }
+
+  .game-options h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .btn {
+    cursor: auto;
+  }
+
+  .game-options__modes li button {
+    width: 40vw;
+  }
+
+  .game-board {
+    width: 95vw;
+    margin: 0;
+  }
+
+  .game-board tr td {
+    width: 100px;
+    height: 150px;
+    border: 10px solid #e2e2e2;
+    font-size: 3rem;
+    transition: 0;
+    cursor: auto;
+  }
+
+  .btn-back {
+    margin-right: 0.8rem;
+  }
+
+  .game-buttons {
+    display: flex;
+    justify-content: space-around;
+    padding: 0 2rem;
+  }
+
+  .win-info {
+    font-size: 2rem;
+  }
 }
